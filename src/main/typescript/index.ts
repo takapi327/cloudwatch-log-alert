@@ -71,6 +71,8 @@ exports.handler = (event: any) => {
           console.log('filterLogEvents')
           console.log(JSON.parse(JSON.stringify(res.events![0].message)))
           console.log(JSON.parse(JSON.stringify(res.events![0].message)))
+
+          web.chat.postMessage()
         }
       })
     }
