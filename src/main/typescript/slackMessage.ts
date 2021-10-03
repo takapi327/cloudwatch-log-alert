@@ -2,10 +2,11 @@
 import { ChatPostMessageArguments } from '@slack/web-api'
 
 export function slackMessage(
-  status:  string,
-  appName: string,
-  count:   number,
-  log:     string
+  status:           string,
+  appName:          string,
+  count:            number,
+  cloudWatchLogUrl: string,
+  log:              string
 ): ChatPostMessageArguments {
 
   return {
@@ -35,7 +36,7 @@ export function slackMessage(
         "type": "section",
         "text": {
           "type": "mrkdwn",
-          "text": '<https://google.com|CloudWatchへ>'
+          "text": `<${cloudWatchLogUrl}|CloudWatchへ>`
         }
       },
       {
