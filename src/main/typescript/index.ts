@@ -16,6 +16,7 @@ exports.handler = (event: any, context: any, callback: any) => {
   // 何分前までのログを取得するか
   const LOG_FILTER_TIME_FROM_MIN = 20
 
+  // Time Zone
   const TIME_ZONE_TOKYO = 'Asia/Tokyo'
 
   // AWS Lambdaのリージョンを取得
@@ -87,7 +88,6 @@ exports.handler = (event: any, context: any, callback: any) => {
             `$26end$3D${logFilterEndTime}`
           ].join('')
 
-          // https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#alarmsV2:alarm/stg-error-alarm?
           /** CloudWatch AlarmへのURLを生成する */
           const cloudWatchAlarmUrl = [
             `https://${region}.console.aws.amazon.com/`,
