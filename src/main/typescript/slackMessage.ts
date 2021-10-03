@@ -2,22 +2,22 @@
 import { ChatPostMessageArguments } from '@slack/web-api'
 
 export function slackMessage(
-  status:           string,
-  appName:          string,
-  count:            number,
-  cloudWatchLogUrl: string,
-  log:              string
+  status:           string, // CloudWatch Alarmの状態
+  appName:          string, // CloudWatch Alarmが発生したアプリ名 (ECS Cluster名)
+  count:            string, // CloudWatch Alarmの発生回数
+  cloudWatchLogUrl: string, // CloudWatch LogsのURL
+  log:              string  // CloudWatch メトリクスフィルターで取得したログ内容
 ): ChatPostMessageArguments {
 
   return {
     channel: process.env.SLACK_CHANNEL!,
-    text:    `Cloud Watch Alert の${status}通知`,
+    text:    `Cloud Watch Alarm の${status}通知`,
     blocks: [
       {
         "type": "header",
         "text": {
           "type": "plain_text",
-          "text": `Cloud Watch Alert の${status}通知`,
+          "text": `Cloud Watch Alarm の${status}通知`,
           "emoji": true
         }
       },
@@ -38,14 +38,7 @@ export function slackMessage(
           "type": "mrkdwn",
           "text": `<${cloudWatchLogUrl}|CloudWatchへ>`
         }
-      },
-      {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": '<https://google.com|Githubへ>'
-        }
-      },
+      }
     ],
     "attachments": [
       {
